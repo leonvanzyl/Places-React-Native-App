@@ -15,6 +15,6 @@ const styles = StyleSheet.create({});
 
 export const screenOptions = (navData) => {
   return {
-    title: "Place Detail Screen",
+    title: navData.route.params.placeTitle,
   };
 };
