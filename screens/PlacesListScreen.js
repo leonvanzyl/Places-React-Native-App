@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, Text, View, Platform, FlatList } from "react-native";
 
-//Redux
-import { useSelector } from "react-redux";
+// SQLite
+import * as placesActions from "../store/actions/places";
 
+//Redux
+import { useSelector, useDispatch } from "react-redux";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
 // Custom Components
@@ -12,7 +14,12 @@ import PlaceItem from "../components/PlaceItem";
 
 const PlacesListScreen = (props) => {
   // Redux
+  const dispatch = useDispatch();
   const places = useSelector((state) => state.places.places);
+
+  useEffect(() => {
+    dispatch(placesActions.loadPlaces());
+  }, [dispatch]);
 
   return (
     <FlatList
